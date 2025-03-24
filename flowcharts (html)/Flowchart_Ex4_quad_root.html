@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nature of roots of Quad Equation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.15.0/flowchart.min.js"></script>
+</head>
+<body>
+    <div id="flowchart-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        const flowchartCode = `
+
+st=>start: Main
+e=>end: End
+
+op_declare_a=>operation: Declare a variable a
+op_declare_b=>operation: Declare a variable b
+op_declare_c=>operation: Declare a variable c
+
+io_pls_enter=>inputoutput: This program determines
+the nature of roots for a quadratic equation 
+of the form y=ax²+bx+c.
+
+io_input_a=>inputoutput: Enter the value of a. 
+op_assign_a=>operation: Assign the input to a
+
+io_input_b=>inputoutput: Enter the value of b. 
+op_assign_b=>operation: Assign the input to b
+
+io_input_c=>inputoutput: Enter the value of c. 
+op_assign_c=>operation: Assign the input to c
+
+op_calculate_discriminant=>operation: Calculate discriminant D = b² - 4ac
+
+cond_discriminant=>condition: Is D > 0?
+cond_discriminant2=>condition: Is D == 0?
+
+io_real_roots=>inputoutput: Two distinct real roots.
+io_equal_roots=>inputoutput: One real root (repeated).
+io_complex_roots=>inputoutput: Two complex roots.
+
+st->op_declare_a->op_declare_b->op_declare_c->io_pls_enter->io_input_a->op_assign_a->io_input_b->op_assign_b->io_input_c->op_assign_c->op_calculate_discriminant->cond_discriminant
+
+cond_discriminant(yes)->io_real_roots->e
+cond_discriminant(no)->cond_discriminant2
+
+cond_discriminant2(yes)->io_equal_roots->e
+cond_discriminant2(no)->io_complex_roots->e
+
+        `;  // Fixed: Added spaces after commas
+
+        const diagram = flowchart.parse(flowchartCode);
+        diagram.drawSVG('flowchart-container', {
+            'x': 50,
+            'y': 30,
+            'line-width': 2,
+            'font-size': 14
+        });
+    </script>
+</body>
+</html>

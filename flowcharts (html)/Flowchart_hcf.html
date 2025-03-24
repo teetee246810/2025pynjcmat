@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HCF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.15.0/flowchart.min.js"></script>
+</head>
+<body>
+    <div id="flowchart-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        const flowchartCode = `
+
+st=>start: HCF (integer m, integer n)
+e=>end: Return Integer hcfmn
+
+op_hcfmn=>operation: Integer hcfmn
+op_counthcf=>operation: Integer counthcf
+op_minofmn=>operation: Integer minofmn
+io_hcfis=>inputoutput: output: "the highest common factor of" {m} and {n} is {hcfmn}
+
+minofmn_true=>operation: minofmn=n
+minofmn_false=>operation: minofmn=m
+
+op_increase_count=>parallel: counthcf=1 to minofmn
+op_hcf_count=>operation: hcfmn=counthcf
+
+cond_size=>condition: m>n?
+cond_divisibility=>condition: m mod counthcf = 0 and n mod counthcf = 0
+
+st->op_hcfmn->op_counthcf->op_minofmn->cond_size
+
+cond_size(yes)->minofmn_true->op_increase_count
+cond_size(no)->minofmn_false->op_increase_count
+
+op_increase_count(path1,right)->cond_divisibility
+cond_divisibility(yes)->op_hcf_count->op_increase_count
+cond_divisibility(no,bottom)->op_increase_count
+
+op_increase_count(path2,bottom)->io_hcfis->e
+
+        `;  // Fixed: Added spaces after commas
+
+        const diagram = flowchart.parse(flowchartCode);
+        diagram.drawSVG('flowchart-container', {
+            'x': 50,
+            'y': 30,
+            'line-width': 2,
+            'font-size': 14
+        });
+    </script>
+</body>
+</html>

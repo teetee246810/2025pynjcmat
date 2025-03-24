@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Even/Sum up to n</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.15.0/flowchart.min.js"></script>
+</head>
+<body>
+    <div id="flowchart-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        const flowchartCode = `
+
+st=>start: Start
+para=>parallel: Parallel Processing
+op1=>operation: Process Data
+op2=>operation: Fetch API
+op3=>operation: Log Activity
+merge=>parallel: Merge
+e=>end: End
+
+st->para
+para(path1, right)->op1->merge
+para(path2, bottom)->op2->merge
+para(path3, left)->op3->merge
+merge->e
+
+        `;  // Fixed: Added spaces after commas
+
+        const diagram = flowchart.parse(flowchartCode);
+        diagram.drawSVG('flowchart-container', {
+            'x': 50,
+            'y': 30,
+            'line-width': 2,
+            'font-size': 14
+        });
+    </script>
+</body>
+</html>

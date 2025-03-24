@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Even/Sum up to n</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.15.0/flowchart.min.js"></script>
+    <style>
+        /* Rotate the flowchart container 90 degrees anti-clockwise */
+        #flowchart-container {
+            transform: rotate(-90deg);
+            transform-origin: top left;
+            width: 600px; /* Adjust width and height as needed */
+            height: 800px;
+            position: absolute;
+            top: 100%; /* Adjust positioning to fit the rotated container */
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="flowchart-container"></div>
+
+    <script>
+        const flowchartCode = `
+st=>start: Start
+op1=>operation: Step 1: Do something
+io=>inputoutput: Step 2: Input/Output
+cond=>condition: Step 3: Decision?
+sub=>subroutine: Step 4: Subroutine
+e=>end: End
+
+st->op1->io->cond
+cond(yes)->sub->e
+cond(no,left)->op1
+        `;
+
+        const diagram = flowchart.parse(flowchartCode);
+        diagram.drawSVG('flowchart-container', {
+            'x': 100,
+            'y': 10,
+            'line-width': 2,
+            'font-size': 14
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Even/Odd Checker Flowchart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.15.0/flowchart.min.js"></script>
+</head>
+<body>
+    <div id="flowchart-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        const flowchartCode = `
+st=>start: Start
+e=>end: End
+
+op_declare=>operation: Declare variable x
+io_pls_enter=>inputoutput: Enter a natural number
+op_assign=>operation: Assign input to x
+cond=>condition: Is x mod 2 == 0?
+io_even=>inputoutput: x is even
+io_odd=>inputoutput: x is odd
+
+st->op_declare->io_pls_enter->op_assign->cond
+
+cond(yes,left)->io_even->e
+cond(no,right)->io_odd->e
+        `;  // Fixed: Added spaces after commas
+
+        const diagram = flowchart.parse(flowchartCode);
+        diagram.drawSVG('flowchart-container', {
+            'x': 50,
+            'y': 30,
+            'line-width': 2,
+            'font-size': 14
+        });
+    </script>
+</body>
+</html>
