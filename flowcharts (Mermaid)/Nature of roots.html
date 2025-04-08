@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <style>
+    .mermaid { 
+      font-family: 'Times New Roman';
+      background: white;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="mermaid">
+    graph TD
+      Start([Main]) -->  A[Real a]
+ 	A --> B[Real b]
+	B --> C[Real c]
+	C --> Output_explain_function[/Output "This program determines the nature of roots for a quadratic equation of the form ax^2+bx+c=0"/]
+
+	Output_explain_function --> Output_enter_a[/Output "Enter the value of a"/]
+	Output_enter_a --> Input_enter_a[/Input a/]
+
+	Input_enter_a --> Output_enter_b[/Output "Enter the value of b"/]
+	Output_enter_b --> Input_enter_b[/Input b/]
+
+	Input_enter_b --> Output_enter_c[/Output "Enter the value of c"/]
+	Output_enter_c --> Input_enter_c[/Input c/]
+
+	Input_enter_c --> Real_d[Real d]
+	Real_d --> Calc_d[d=b^2-4*a*c]
+	
+	Calc_d --> Output_discriminant[/Output "The discriminant d=b^2-4ac,is" & d/]
+	Output_discriminant --> d_smaller_than_0{d<0}
+
+	d_smaller_than_0 -->|True| Output_no_real_roots[/Output "This quadratic equation has no real roots."/]
+	
+	d_smaller_than_0 ---->|False| d_equal_to_0{d=0}
+
+	d_equal_to_0 --> |False| Output_distinct_real_roots[/Output "This quadratic equation has two distinct real roots."/]
+	d_equal_to_0 --> |True| Output_equal_real_roots[/Output "This quadratic equation has two equal real roots."/]
+
+	Output_distinct_real_roots --> Circle1((" "))
+	Output_equal_real_roots --> Circle1((" "))
+
+	Circle1 --> Circle2((" "))
+	Output_no_real_roots --> Circle2
+
+	Circle2 --> End([End])
+	
+	
+
+  </div>
+</body>
+</html>

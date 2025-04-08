@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <style>
+    .mermaid { 
+      font-family: 'Times New Roman';
+      background: white;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="mermaid">
+    graph TD
+      Start([HCF of integer m, integer n]) --> Integer_hcf[Integer hcfmn]
+ 	Integer_hcf --> Integer_count[Integer counthcf]
+	Integer_count --> Integer_min[Integer minofmn]
+	Integer_min --> Integer_check_magnitude{m>n}
+
+	Integer_check_magnitude -->|False| min_m[minofmn=m]
+	Integer_check_magnitude -->|True| min_n[minofmn=n]
+
+	
+	min_m --> Circle1((" "))
+	min_n --> Circle1((" "))
+
+	Circle1 --> counthcf{{counthcf= 1 to n}}
+
+	counthcf ----> |Done| Output_hcf[/output "The highest common factor of" & m & "and" & n & "is" & hcfmn/]
+	
+	
+	counthcf -->|Next| Check_mod{'m mod counthcf = 0' and 'n mod counthcf = 0'}
+	Check_mod --> |True| hcf_updated[hcfmn=counthcf]
+	Check_mod --> |False| Circle2((" "))
+	
+	hcf_updated --> Circle2
+	Circle2 --> counthcf
+	
+	Output_hcf --> Return([Return Integer hcfmn])
+
+
+  </div>
+</body>
+</html>

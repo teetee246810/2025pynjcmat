@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <style>
+    .mermaid { 
+      font-family: 'Times New Roman';
+      background: white;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="mermaid">
+    graph TD
+      Start([Main]) -->  A[Integer testnumber]
+ 	A[Integer testnumber] --> B[/Output "Please enter a natural number"/]
+	B[/Output "Please enter a natural number"/]--> C[/Input testnumber/]
+	C[/Input testnumber/]--> Cond{testnumber mod 2 = 0}
+	Cond -->|False| False_print[/Output testnumber & "is odd!"/]
+      Cond -->|True| True_print[/Output testnumber & "is even!"/]
+	False_print --> Circle((" "))
+	True_print --> Circle((" "))
+	Circle --> End([End])
+
+
+	
+
+  </div>
+</body>
+</html>
